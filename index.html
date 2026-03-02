@@ -2,265 +2,253 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme:light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme:dark)">
   <title>AI Stock Debate — 2026-03-02</title>
   <style>
   :root {
-    --bg:          #ffffff;
-    --surface:     #f5f5f7;
-    --surface2:    #e8e8ed;
-    --border:      #d2d2d7;
-    --text:        #1d1d1f;
-    --secondary:   #6e6e73;
-    --accent:      #0071e3;
-    --accent-bg:   #e8f0fe;
-    --green:       #1a7f47; --green-bg:  #d1fae5;
-    --blue:        #1e40af; --blue-bg:   #dbeafe;
-    --red:         #9b1c1c; --red-bg:    #fee2e2;
-    --amber:       #78350f; --amber-bg:  #fef3c7;
-    --purple:      #5b21b6; --purple-bg: #ede9fe;
-    --gray-text:   #374151; --gray-bg:   #f3f4f6;
-    --tab-h:       56px;
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --bg:        #ffffff; --surface:  #f5f5f7; --border: #d2d2d7;
+    --text:      #1d1d1f; --secondary:#6e6e73; --accent: #0071e3;
+    --green:     #1a7f47; --green-bg: #d1fae5;
+    --blue:      #1e40af; --blue-bg:  #dbeafe;
+    --red:       #9b1c1c; --red-bg:   #fee2e2;
+    --amber:     #78350f; --amber-bg: #fef3c7;
+    --purple:    #5b21b6; --purple-bg:#ede9fe;
+    --gray-text: #374151; --gray-bg:  #f3f4f6;
+    --tab-h: 56px; --safe-bottom: env(safe-area-inset-bottom, 0px);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg:        #000000;
-      --surface:   #1c1c1e;
-      --surface2:  #2c2c2e;
-      --border:    #38383a;
-      --text:      #f5f5f7;
-      --secondary: #98989f;
-      --accent:    #0a84ff;
-      --accent-bg: #1a2a40;
-      --green:     #30d158; --green-bg:  #0a2a1a;
-      --blue:      #64d2ff; --blue-bg:   #0a1a2a;
-      --red:       #ff453a; --red-bg:    #2a0a0a;
-      --amber:     #ffd60a; --amber-bg:  #2a1f00;
-      --purple:    #bf5af2; --purple-bg: #1a0a2a;
-      --gray-text: #ebebf5; --gray-bg:   #2c2c2e;
+      --bg:#000; --surface:#1c1c1e; --border:#38383a;
+      --text:#f5f5f7; --secondary:#98989f; --accent:#0a84ff;
+      --green:#30d158; --green-bg:#0a2a1a;
+      --blue:#64d2ff;  --blue-bg:#0a1a2a;
+      --red:#ff453a;   --red-bg:#2a0a0a;
+      --amber:#ffd60a; --amber-bg:#2a1f00;
+      --purple:#bf5af2;--purple-bg:#1a0a2a;
+      --gray-text:#ebebf5; --gray-bg:#2c2c2e;
     }
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    font-family: -apple-system, "SF Pro Text", BlinkMacSystemFont,
-                 "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-    padding-bottom: calc(var(--tab-h) + var(--safe-bottom) + 8px);
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{font-family:-apple-system,"SF Pro Text",BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+       background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;
+       padding-bottom:calc(var(--tab-h) + var(--safe-bottom) + 8px);}
+  a{color:var(--accent);text-decoration:none;}
 
-  /* ── top nav ── */
-  .topnav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(var(--bg-rgb, 255,255,255), .85);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--border);
-    height: 52px;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px;
+  /* lang toggle */
+  .lang-btn{display:flex;gap:4px;}
+  .lang-btn button{
+    background:none;border:1px solid var(--border);border-radius:6px;
+    padding:4px 10px;font-size:12px;font-weight:600;color:var(--secondary);cursor:pointer;
+    font-family:inherit;
   }
-  @media (prefers-color-scheme: dark) {
-    .topnav { background: rgba(0,0,0,.85); }
-  }
-  .topnav-brand { font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
-  .topnav-sub   { font-size: 13px; color: var(--secondary); }
+  .lang-btn button.active{background:var(--accent);border-color:var(--accent);color:#fff;}
 
-  /* ── bottom tab bar ── */
-  .tabbar {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    height: calc(var(--tab-h) + var(--safe-bottom));
-    padding-bottom: var(--safe-bottom);
-    background: rgba(var(--bg-rgb, 255,255,255), .92);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-top: 1px solid var(--border);
-    display: flex;
-    z-index: 100;
-  }
-  @media (prefers-color-scheme: dark) {
-    .tabbar { background: rgba(0,0,0,.92); }
-  }
-  .tab {
-    flex: 1; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    font-size: 10px; font-weight: 500; color: var(--secondary);
-    gap: 3px; cursor: pointer; -webkit-tap-highlight-color: transparent;
-    text-decoration: none;
-  }
-  .tab.active { color: var(--accent); }
-  .tab svg { width: 24px; height: 24px; }
+  /* hide/show by language */
+  body.ko .en{display:none!important;}
+  body.en .ko{display:none!important;}
 
-  /* ── page container ── */
-  .page { max-width: 680px; margin: 0 auto; padding: 0 16px; }
-
-  /* ── section ── */
-  .section { padding: 36px 0; border-bottom: 1px solid var(--border); }
-  .section:last-of-type { border-bottom: none; }
-  .section-label {
-    font-size: 11px; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--secondary);
-    margin-bottom: 20px;
+  /* topnav */
+  .topnav{
+    position:sticky;top:0;z-index:100;height:52px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 18px;border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,.85);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
   }
+  @media(prefers-color-scheme:dark){.topnav{background:rgba(0,0,0,.85);}}
+  .topnav-brand{font-size:16px;font-weight:600;letter-spacing:-.01em;}
+  .topnav-right{display:flex;align-items:center;gap:10px;}
+  .topnav-date{font-size:12px;color:var(--secondary);}
 
-  /* ── hero ── */
-  .hero { padding: 44px 0 36px; text-align: center; border-bottom: 1px solid var(--border); }
-  .hero-eyebrow {
-    font-size: 12px; font-weight: 600; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--secondary); margin-bottom: 12px;
+  /* tab bar */
+  .tabbar{
+    position:fixed;bottom:0;left:0;right:0;
+    height:calc(var(--tab-h) + var(--safe-bottom));
+    padding-bottom:var(--safe-bottom);
+    display:flex;z-index:100;border-top:1px solid var(--border);
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
   }
-  .hero-title {
-    font-size: clamp(30px, 7vw, 46px); font-weight: 700;
-    letter-spacing: -.03em; line-height: 1.08; margin-bottom: 12px;
+  @media(prefers-color-scheme:dark){.tabbar{background:rgba(0,0,0,.92);}}
+  .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+       font-size:10px;font-weight:500;color:var(--secondary);gap:3px;
+       text-decoration:none;-webkit-tap-highlight-color:transparent;}
+  .tab.active{color:var(--accent);}
+  .tab svg{width:22px;height:22px;}
+
+  /* layout */
+  .page{max-width:680px;margin:0 auto;padding:0 16px;}
+  .section{padding:32px 0;border-bottom:1px solid var(--border);}
+  .section:last-of-type{border-bottom:none;}
+  .section-label{font-size:11px;font-weight:700;letter-spacing:.1em;
+                 text-transform:uppercase;color:var(--secondary);margin-bottom:18px;}
+
+  /* hero */
+  .hero{padding:40px 0 32px;text-align:center;border-bottom:1px solid var(--border);}
+  .hero-eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;
+                text-transform:uppercase;color:var(--secondary);margin-bottom:10px;}
+  .hero-title{font-size:clamp(28px,7vw,44px);font-weight:700;
+              letter-spacing:-.03em;line-height:1.08;margin-bottom:10px;}
+  .hero-sub{font-size:14px;color:var(--secondary);line-height:1.5;}
+
+  /* pick cards */
+  .picks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;}
+  .pick-card{background:var(--surface);border-radius:16px;padding:22px 20px 18px;}
+  .pick-rank{font-size:11px;font-weight:700;color:var(--secondary);margin-bottom:4px;letter-spacing:.05em;}
+  .pick-ticker{font-size:11px;font-weight:500;color:var(--secondary);margin-bottom:4px;}
+  .pick-name{font-size:19px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;}
+  .pick-change{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;}
+  .pick-label{font-size:12px;font-weight:400;color:var(--secondary);}
+  .pick-signals{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:16px;}
+  .pick-why-label{font-size:11px;font-weight:700;letter-spacing:.06em;
+                  text-transform:uppercase;color:var(--secondary);margin-bottom:6px;}
+  .pick-why{font-size:13px;color:var(--secondary);line-height:1.55;}
+
+  /* signal pill */
+  .pill{font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;
+        white-space:nowrap;display:inline-block;}
+
+  /* top 5 list */
+  .rank-list{display:flex;flex-direction:column;gap:1px;
+             background:var(--border);border-radius:14px;overflow:hidden;}
+  .rank-item{background:var(--bg);padding:14px 16px;
+             display:flex;align-items:center;gap:12px;}
+  .rank-item.selected{background:var(--green-bg);}
+  @media(prefers-color-scheme:dark){.rank-item.selected{background:var(--green-bg);}}
+  .rank-num{font-size:11px;font-weight:700;color:var(--secondary);width:22px;flex-shrink:0;}
+  .rank-info{flex:1;min-width:0;}
+  .rank-name{font-size:15px;font-weight:600;margin-bottom:2px;
+             white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .rank-sector{font-size:12px;color:var(--secondary);margin-bottom:5px;}
+  .rank-sigs{display:flex;flex-wrap:wrap;gap:3px;}
+  .rank-right{text-align:right;flex-shrink:0;}
+  .rank-change{font-size:15px;font-weight:700;}
+  .rank-meta{font-size:11px;color:var(--secondary);margin-top:2px;}
+  .sel-badge{display:inline-block;background:var(--green);color:#fff;
+             font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;
+             margin-left:5px;vertical-align:middle;letter-spacing:.04em;}
+
+  /* debate section */
+  .debate-toggle{
+    width:100%;background:var(--surface);border:none;border-radius:12px;
+    padding:16px 18px;font-size:15px;font-weight:600;color:var(--accent);
+    cursor:pointer;text-align:left;font-family:inherit;
+    display:flex;justify-content:space-between;align-items:center;
+    -webkit-tap-highlight-color:transparent;
   }
-  .hero-sub { font-size: 15px; color: var(--secondary); line-height: 1.5; }
+  .debate-toggle:active{opacity:.7;}
+  .debate-body{display:none;margin-top:16px;}
+  .debate-body.open{display:block;}
+  .debate-round-label{font-size:11px;font-weight:700;letter-spacing:.1em;
+                      text-transform:uppercase;color:var(--secondary);
+                      margin:24px 0 12px;}
+  .debate-round-label:first-child{margin-top:0;}
+  .agent-list{display:flex;flex-direction:column;gap:1px;
+              background:var(--border);border-radius:14px;overflow:hidden;}
+  .agent-card{background:var(--bg);padding:18px 16px 16px;}
+  .agent-meta{font-size:14px;font-weight:600;margin-bottom:6px;}
+  .agent-firm{font-size:12px;color:var(--secondary);font-weight:400;margin-left:5px;}
+  .agent-text{font-size:13px;color:var(--secondary);line-height:1.6;white-space:pre-wrap;}
 
-  /* ── pick cards ── */
-  .picks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 14px;
-  }
-  .pick-card {
-    background: var(--surface); border-radius: 16px;
-    padding: 22px 22px 18px;
-  }
-  .pick-ticker { font-size: 12px; font-weight: 500; color: var(--secondary); margin-bottom: 6px; }
-  .pick-name   { font-size: 20px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 10px; }
-  .pick-change { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 14px; }
-  .pick-label  { font-size: 13px; font-weight: 400; color: var(--secondary); }
-  .pick-signals { display: flex; flex-wrap: wrap; gap: 5px; }
+  /* verdicts */
+  .verdict-list{display:flex;flex-direction:column;gap:1px;
+                background:var(--border);border-radius:14px;overflow:hidden;}
+  .verdict-item{background:var(--bg);padding:14px 16px;}
+  .verdict-name{font-size:14px;font-weight:600;margin-bottom:5px;}
+  .verdict-yes{color:var(--green);font-weight:600;font-size:14px;}
+  .verdict-no{color:var(--secondary);font-size:14px;}
 
-  /* ── signal pill ── */
-  .pill {
-    font-size: 10px; font-weight: 600; padding: 3px 8px;
-    border-radius: 20px; white-space: nowrap; display: inline-block;
-  }
+  /* archive */
+  .archive-list{display:flex;flex-direction:column;gap:1px;
+                background:var(--border);border-radius:14px;overflow:hidden;}
+  .archive-item{background:var(--bg);padding:14px 16px;
+                display:flex;align-items:center;justify-content:space-between;
+                text-decoration:none;color:var(--text);
+                -webkit-tap-highlight-color:transparent;}
+  .archive-item:active{background:var(--surface);}
+  .archive-date{font-size:15px;font-weight:600;}
+  .archive-picks{font-size:12px;color:var(--secondary);margin-top:2px;}
+  .archive-chev{color:var(--border);font-size:20px;}
 
-  /* ── rankings (mobile-first stacked list) ── */
-  .rank-list { display: flex; flex-direction: column; gap: 1px; background: var(--border);
-               border-radius: 14px; overflow: hidden; }
-  .rank-item { background: var(--bg); padding: 16px 18px; display: flex; align-items: center; gap: 14px; }
-  .rank-item.selected { background: var(--green-bg); }
-  @media (prefers-color-scheme: dark) { .rank-item.selected { background: var(--green-bg); } }
-  .rank-num { font-size: 11px; font-weight: 700; color: var(--secondary); width: 20px; flex-shrink: 0; }
-  .rank-info { flex: 1; min-width: 0; }
-  .rank-name { font-size: 15px; font-weight: 600; margin-bottom: 3px;
-               white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .rank-sector { font-size: 12px; color: var(--secondary); margin-bottom: 6px; }
-  .rank-signals { display: flex; flex-wrap: wrap; gap: 4px; }
-  .rank-right { text-align: right; flex-shrink: 0; }
-  .rank-change { font-size: 16px; font-weight: 700; }
-  .rank-meta { font-size: 11px; color: var(--secondary); margin-top: 2px; }
-  .selected-badge {
-    display: inline-block; background: var(--green); color: #fff;
-    font-size: 9px; font-weight: 700; padding: 2px 6px;
-    border-radius: 8px; margin-left: 6px; vertical-align: middle;
-    letter-spacing: .04em;
-  }
-
-  /* ── agent cards ── */
-  .agent-list { display: flex; flex-direction: column; gap: 1px;
-                background: var(--border); border-radius: 14px; overflow: hidden; }
-  .agent-card { background: var(--bg); padding: 18px 18px 16px; }
-  .agent-meta { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-  .agent-firm { font-size: 12px; color: var(--secondary); font-weight: 400; margin-left: 6px; }
-  .agent-text { font-size: 14px; color: var(--secondary); line-height: 1.55; }
-
-  /* ── verdicts ── */
-  .verdict-list { display: flex; flex-direction: column; gap: 1px;
-                  background: var(--border); border-radius: 14px; overflow: hidden; }
-  .verdict-item { background: var(--bg); padding: 16px 18px; }
-  .verdict-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-  .verdict-result { font-size: 14px; }
-  .verdict-yes { color: var(--green); font-weight: 600; }
-  .verdict-no  { color: var(--secondary); }
-
-  /* ── archive grid ── */
-  .archive-grid { display: flex; flex-direction: column; gap: 1px;
-                  background: var(--border); border-radius: 14px; overflow: hidden; }
-  .archive-item {
-    background: var(--bg); padding: 16px 18px;
-    display: flex; align-items: center; justify-content: space-between;
-    text-decoration: none; color: var(--text);
-    -webkit-tap-highlight-color: transparent;
-  }
-  .archive-item:active { background: var(--surface); }
-  .archive-date { font-size: 15px; font-weight: 600; }
-  .archive-picks { font-size: 13px; color: var(--secondary); margin-top: 3px; }
-  .archive-chevron { color: var(--border); font-size: 18px; }
-
-  /* ── footer ── */
-  .footer { padding: 28px 0; text-align: center; font-size: 12px; color: var(--secondary); }
+  .footer{padding:24px 0;text-align:center;font-size:12px;color:var(--secondary);}
 </style>
 </head>
 <body>
   
   <div class="topnav">
-    <span class="topnav-brand">AI Stock Debate</span>
-    <span class="topnav-sub">2026-03-02</span>
+    <span class="topnav-brand"><span class="en">AI Stock Debate</span><span class="ko">AI 주식 토론</span></span>
+    <div class="topnav-right">
+      <span class="topnav-date">2026-03-02</span>
+      <div class="lang-btn">
+        <button data-lang="en">EN</button>
+        <button data-lang="ko">한국어</button>
+      </div>
+    </div>
   </div>
   
   <div class="page">
     <div class="hero">
-      <div class="hero-eyebrow">Korean AI Stocks · 2026-03-02</div>
-      <h1 class="hero-title">Today's Picks</h1>
-      <p class="hero-sub">6 analysts · 67 stocks · Bollinger Bands · RSI · MACD</p>
+      <div class="hero-eyebrow"><span class="en">Korean AI Stocks · 2026-03-02</span><span class="ko">한국 AI 주식 · 2026-03-02</span></div>
+      <h1 class="hero-title"><span class="en">Today's Picks</span><span class="ko">오늘의 추천 종목</span></h1>
+      <p class="hero-sub"><span class="en">6 analysts · 67 AI-theme stocks · Bollinger Bands · RSI · MACD</span><span class="ko">6명의 애널리스트 · 67개 AI 테마 종목 · 볼린저 밴드 · RSI · MACD</span></p>
     </div>
 
     <div class="section">
-      <div class="section-label">Selected Today</div>
+      <div class="section-label"><span class="en">Selected Today</span><span class="ko">오늘 선정</span></div>
       <div class="picks-grid">
       <div class="pick-card">
+        <div class="pick-rank">PICK 1</div>
         <div class="pick-ticker">322000</div>
         <div class="pick-name">HD현대로보틱스</div>
-        <div class="pick-change" style="color:var(--green)">+20.5% <span class="pick-label">5-day</span></div>
+        <div class="pick-change" style="color:var(--green)">+20.5% <span class="pick-label"><span class="en">5-day</span><span class="ko">5일</span></span></div>
         <div class="pick-signals"><span class="pill" style="background:var(--green-bg);color:var(--green);">BULLISH RSI</span><span class="pill" style="background:var(--gray-bg);color:var(--gray-text);">INSIDE BB</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD BULLISH CROSS</span></div>
+        
       </div>
       <div class="pick-card">
+        <div class="pick-rank">PICK 2</div>
         <div class="pick-ticker">000720</div>
         <div class="pick-name">현대건설</div>
-        <div class="pick-change" style="color:var(--green)">+28.4% <span class="pick-label">5-day</span></div>
+        <div class="pick-change" style="color:var(--green)">+28.4% <span class="pick-label"><span class="en">5-day</span><span class="ko">5일</span></span></div>
         <div class="pick-signals"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
+        <div class="pick-why-label"><span class="en">Why selected</span><span class="ko">선정 이유</span></div>
+          <div class="pick-why">- Business reality: 현대건설 is a fine construction conglomerate with nuclear and infrastructure exposure. I respect the business. But a construction company does not double its intrinsic value in two weeks. Free cash flow in construction is lumpy and capital-intensive. The balance sheet carries significant project-related debt. - 5-day move justified?: Absolutely not by fundamentals. Unless there was a specific, disclosed, massive new contract award — and even then, +28% in 5 days would be an overreaction — this move is pure sentiment and AI/nuclear theme-chasing. - The Graham test: Would Benjamin Graham look at this price and see a margin of safety? No.</div>
       </div></div>
     </div>
 
     <div class="section">
-      <div class="section-label">Consensus Rankings</div>
+      <div class="section-label"><span class="en">Top 5 Consensus</span><span class="ko">합의 상위 5종목</span></div>
       <div class="rank-list">
       <div class="rank-item selected">
         <div class="rank-num">01</div>
         <div class="rank-info">
-          <div class="rank-name">HD현대로보틱스<span class="selected-badge">SELECTED</span></div>
+          <div class="rank-name">HD현대로보틱스<span class="sel-badge">✓</span></div>
           <div class="rank-sector">로봇 / 자동화</div>
-          <div class="rank-signals"><span class="pill" style="background:var(--green-bg);color:var(--green);">BULLISH RSI</span><span class="pill" style="background:var(--gray-bg);color:var(--gray-text);">INSIDE BB</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD BULLISH CROSS</span></div>
+          <div class="rank-sigs"><span class="pill" style="background:var(--green-bg);color:var(--green);">BULLISH RSI</span><span class="pill" style="background:var(--gray-bg);color:var(--gray-text);">INSIDE BB</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD BULLISH CROSS</span></div>
         </div>
         <div class="rank-right">
           <div class="rank-change" style="color:var(--green)">+20.5%</div>
           <div class="rank-meta">RSI 72.2 · BB 97.2%</div>
-          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+          <div class="rank-meta"><span class="en">Score</span><span class="ko">점수</span> 0.0</div>
         </div>
       </div>
       <div class="rank-item selected">
         <div class="rank-num">02</div>
         <div class="rank-info">
-          <div class="rank-name">현대건설<span class="selected-badge">SELECTED</span></div>
+          <div class="rank-name">현대건설<span class="sel-badge">✓</span></div>
           <div class="rank-sector">에너지 / 원전</div>
-          <div class="rank-signals"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
+          <div class="rank-sigs"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
         </div>
         <div class="rank-right">
           <div class="rank-change" style="color:var(--green)">+28.4%</div>
           <div class="rank-meta">RSI 86.4 · BB 104.8%</div>
-          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+          <div class="rank-meta"><span class="en">Score</span><span class="ko">점수</span> 0.0</div>
         </div>
       </div>
       <div class="rank-item ">
@@ -268,12 +256,12 @@
         <div class="rank-info">
           <div class="rank-name">한미반도체</div>
           <div class="rank-sector">반도체 / Memory</div>
-          <div class="rank-signals"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
+          <div class="rank-sigs"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
         </div>
         <div class="rank-right">
           <div class="rank-change" style="color:var(--green)">+61.4%</div>
           <div class="rank-meta">RSI 85.3 · BB 137.0%</div>
-          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+          <div class="rank-meta"><span class="en">Score</span><span class="ko">점수</span> 0.0</div>
         </div>
       </div>
       <div class="rank-item ">
@@ -281,12 +269,12 @@
         <div class="rank-info">
           <div class="rank-name">SK하이닉스</div>
           <div class="rank-sector">반도체 / Memory</div>
-          <div class="rank-signals"><span class="pill" style="background:var(--green-bg);color:var(--green);">BULLISH RSI</span><span class="pill" style="background:var(--gray-bg);color:var(--gray-text);">INSIDE BB</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">MACD MOMENTUM DOWN</span></div>
+          <div class="rank-sigs"><span class="pill" style="background:var(--green-bg);color:var(--green);">BULLISH RSI</span><span class="pill" style="background:var(--gray-bg);color:var(--gray-text);">INSIDE BB</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">MACD MOMENTUM DOWN</span></div>
         </div>
         <div class="rank-right">
           <div class="rank-change" style="color:var(--green)">+11.8%</div>
           <div class="rank-meta">RSI 68.8 · BB 97.8%</div>
-          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+          <div class="rank-meta"><span class="en">Score</span><span class="ko">점수</span> 0.0</div>
         </div>
       </div>
       <div class="rank-item ">
@@ -294,51 +282,610 @@
         <div class="rank-info">
           <div class="rank-name">LG화학</div>
           <div class="rank-sector">하드웨어 / 전자</div>
-          <div class="rank-signals"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
+          <div class="rank-sigs"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
         </div>
         <div class="rank-right">
           <div class="rank-change" style="color:var(--green)">+23.9%</div>
           <div class="rank-meta">RSI 81.0 · BB 114.9%</div>
-          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+          <div class="rank-meta"><span class="en">Score</span><span class="ko">점수</span> 0.0</div>
         </div>
       </div></div>
     </div>
 
     <div class="section">
-      <div class="section-label">The Debate</div>
-      <div class="agent-list">
-      <div class="agent-card">
-        <div class="agent-meta">🇰🇷 Kim Ji-hyun (김지현)<span class="agent-firm">Samsung Securities</span></div>
-        <div class="agent-text">내 TOP 5 BUY LIST (2026-02-27) --- 1. 000720 현대건설 (Hyundai Engineering & Construction) THESIS: Nuclear + AI power infrastructure tailwind is structural, not cyclical. 28.4% in 5 days on 1.3x volume above upper BB confirms 기관 + 외국인 buying, not retail speculation. This is THE play on Korea's energy security bet. KEY SIGNAL: STRONG_UPTREND_5D + ABOVE_BB_UPPER on massive institutional conviction (1.3x volume). RSI 86.4 is overbought in a structural uptrend—this is strength, not weakness. Risk of pullback exists, but not breaking below 20-day MA yet. --- 2.…</div>
-      </div>
-      <div class="agent-card">
-        <div class="agent-meta">🇺🇸 Sarah Chen<span class="agent-firm">Goldman Sachs</span></div>
-        <div class="agent-text">SARAH CHEN'S TOP 5 BUY LIST – Feb 27, 2026 Let me be clear upfront: this market is dangerously overbought in pockets, and I'm being disciplined about entry points. I'm rejecting the obvious momentum plays (한미반도체, 현대건설, LG화학 are all &gt;10% above Bollinger upper band—reversion risk is real). Here's where I see asymmetric risk/reward: --- 1. 카카오 (035720) – ₩62,300 THESIS: Kakao is the cleanest Korean AI-software story—cloud infrastructure + search + AI. RSI at 64.8 is textbook bullish momentum without the overbought extreme, inside Bollinger bands, and MACD…</div>
-      </div>
-      <div class="agent-card">
-        <div class="agent-meta">🇰🇷 Park Sung-min (박성민)<span class="agent-firm">Mirae Asset</span></div>
-        <div class="agent-text">PARK SUNG-MIN'S TOP 5 BUY LIST — 27 FEB 2026 Let me cut to it: the retail crowd is rotating hard into hardware/power infrastructure, and the technicals are screaming. Here's where I'm putting conviction capital: --- 1. 051910 | LG화학 (LG Chem) THESIS: Massive +23.9% 5d rally with RSI 81 still climbing—this is a retail-driven squeeze in full effect. Above BB upper (115%) + MACD momentum up = institutional money chasing the retail bid. Hardware/battery play into AI server power demand is structural. KEY SIGNAL: Price closed above BB upper on 1.3x volume…</div>
-      </div>
-      <div class="agent-card">
-        <div class="agent-meta">🇺🇸 Michael Torres<span class="agent-firm">Citadel</span></div>
-        <div class="agent-text">TORRES' TOP 5 BUYS — Korean AI-Theme Shorts & Longs (2026-02-27) I'm going to be blunt: this dataset is a minefield of extended positions and momentum exhaustion. Three of my five are SHORT candidates, not buys. The data demands it. --- THE BUYS (Genuine Edge) 1. 000660 | SK하이닉스 THESIS: Classic mean-reversion setup in a structural mega-trend. DRAM pricing is bottoming into Q1'26; SK has run +21.1% in 10d but RSI 68.8 shows contained momentum (not 80+). MACD momentum DOWN while price holds is textbook accumulation before next leg. KEY SIGNAL: RSI…</div>
-      </div></div>
+      <div class="section-label"><span class="en">The Debate</span><span class="ko">토론</span></div>
+      <button class="debate-toggle" onclick="toggleDebate(this)">
+        <span><span class="en">Read full debate ↓</span><span class="ko">전체 토론 보기 ↓</span></span>
+      </button>
+      <div class="debate-body">
+    <div class="debate-round-label">
+      <span class="en">Round 1 — Initial Proposals</span>
+      <span class="ko">1라운드 — 초기 제안</span>
+    </div>
+    <div class="agent-list">
+          <div class="agent-card">
+            <div class="agent-meta">🇰🇷 Kim Ji-hyun (김지현)<span class="agent-firm">Samsung Securities</span></div>
+            <div class="agent-text">내 TOP 5 BUY LIST (2026-02-27)
+
+---
+
+1. 000720 현대건설 (Hyundai Engineering & Construction)
+
+THESIS: Nuclear + AI power infrastructure tailwind is structural, not cyclical. 28.4% in 5 days on 1.3x volume above upper BB confirms 기관 + 외국인 buying, not retail speculation. This is THE play on Korea's energy security bet.
+
+KEY SIGNAL: STRONG_UPTREND_5D + ABOVE_BB_UPPER on massive institutional conviction (1.3x volume). RSI 86.4 is overbought in a structural uptrend—this is strength, not weakness. Risk of pullback exists, but not breaking below 20-day MA yet.
+
+---
+
+2. 051910 LG화학 (LG Chem)
+
+THESIS: HBM memory materials + battery tech + AI power demand = perfect storm. 23.9% gain with volume confirms supply-chain positioning ahead of major capex cycle. LG화학 is the "picks and shovels" play on Samsung/SK Hynix memory buildout.
+
+KEY SIGNAL: ABOVE_BB_UPPER on 1.3x volume with MACD_MOMENTUM_UP. The 10-day (+30.1%) shows this is institutional accumulation, not day-trader noise. Entry is tight, but momentum is undeniable.
+
+---
+
+3. 277810 레인보우로보틱스 (Rainbow Robotics)
+
+THESIS: Factory automation for AI chip/packaging production is accelerating globally. 20.8% in 5d + ABOVE_BB_UPPER = 삼성 / SK Hynix equipment capex flows filtering down to hardware OEMs. Korean robotics is finally getting valuation it deserves.
+
+KEY SIGNAL: ABOVE_BB_UPPER + MACD_MOMENTUM_UP on 1.3x volume. RSI 61.8 (elevated but not extreme) suggests room to run. This breaks out of "mid-cap forgotten stock" territory.
+
+---
+
+4. 009150 삼성전기 (Samsung Electro-Mechanics)
+
+THESIS: FPCB + advanced packaging for HBM modules—the critical bottleneck. 19% in 5 days reflects 기관's recognition that semiconductor supply is constrained by backend capacity, not wafer fabs. This is the unsung winner.
+
+KEY SIGNAL: 19.0% 5-day + 43.1% 10-day on 1.2x volume shows sustained buying (not a 1-day spike). RSI 78.8 (overbought) is fine because momentum is clearly upward. 거래량 confirms it's real.
+
+---
+
+5. 322000 HD현대로보틱스 (HD Hyundai Robotics)
+
+THESIS: Industrial robotics play on AI fab capex + nuclear construction automation. 20.5% in 5 days + MACD_BULLISH_CROSS = institutional pivot into "Korea's answer to FANUC." Smaller cap, higher upside leverage.
+
+KEY SIGNAL: MACD_BULLISH_CROSS + 1.3x volume + RSI 72.2 shows clean technical setup. This is momentum + fundamental catalyst (현대 group pivot into automation).
+
+---
+
+⚠️ WHAT I'M AVOIDING:
+
+- 042700 한미반도체: RSI 85.3, BB% 137%—this is exhaustion, not strength. Retail got FOMO'd in. Will test support at ₩300k within days.
+- 047040 대우건설: Similar overbought trap (RSI 84.8, BB% 99%). Power play is real, but timing is late.
+- AI Software sector: Kakao (+7.6%), Naver (dead weight), Coupang ecosystem—너무 비싼데 모멘텀 없다. Wait for pullback.
+
+---
+
+내 확신도 (Conviction Level): 9/10 on 현대건설 · 삼성전기. 8/10 on나머지. 
+
+현재 시장은 Korea AI + Nuclear infrastructure에 집중되어 있고, 거래량이 뒷받침하고 있다. 가격이 올라도 거래량이 있으면 진짜다.</div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-meta">🇺🇸 Sarah Chen<span class="agent-firm">Goldman Sachs</span></div>
+            <div class="agent-text">SARAH CHEN'S TOP 5 BUY LIST – Feb 27, 2026
+
+Let me be clear upfront: this market is dangerously overbought in pockets, and I'm being disciplined about entry points. I'm rejecting the obvious momentum plays (한미반도체, 현대건설, LG화학 are all &gt;10% above Bollinger upper band—reversion risk is real). Here's where I see asymmetric risk/reward:
+
+---
+
+1. 카카오 (035720) – ₩62,300
+
+THESIS: Kakao is the cleanest Korean AI-software story—cloud infrastructure + search + AI. RSI at 64.8 is textbook bullish momentum without the overbought extreme, inside Bollinger bands, and MACD momentum still up. This is a Tier-1 digital ecosystem play with AI optionality that's been left behind vs. the semiconductor mania.
+
+KEY SIGNAL: MACD bullish momentum + RSI in the 60–65 "sweet spot" + volume surge (1.1x). This is controlled acceleration, not parabolic extension.
+
+BEAR CASE: Regulatory risk on data monopoly; competition from Naver/Google. KRW weakness helps exporters but not domestic-facing ad tech.
+
+---
+
+2. SK하이닉스 (000660) – ₩1,061,000
+
+THESIS: The global DRAM/NAND leader is fundamentally re-rated on AI capex tailwinds (data centers, training clusters). Trading at RSI 68.8—still bullish but NOT overbought—with MACD momentum DOWN (clean entry on any pullback). 10d return of +21.1% reflects actual earnings revisions, not speculation. vs. Samsung (RSI 82.6—already stretched), SK offers better risk/reward.
+
+KEY SIGNAL: MACD momentum DOWN + RSI 68.8 (bullish, not extreme) + BB% at 98% (pinned to midline, not overextended). This is institutional accumulation with room to run.
+
+BEAR CASE: TSMC margin compression eats SK's ASPs; China memory oversupply risk if capex cycle rolls over. China geopolitics could defund US AI server builds.
+
+---
+
+3. HD현대로보틱스 (322000) – ₩104,000
+
+THESIS: Robotics automation is the secular beneficiary of labor scarcity + AI integration. HD Hyundai Robotics just triggered MACD bullish crossover at RSI 72.2—this is a high-conviction momentum entry with institutional hand-off. Paired with AI software, this becomes a pick-and-shovel play on Korean industrial automation.
+
+KEY SIGNAL: MACD bullish crossover + 1.3x volume surge + RSI 72.2 (still bullish, margin to 75). Classic institutional entry pattern.
+
+BEAR CASE: Hyundai chaebol governance—watch for off-market deals within the group. Automotive/industrial cycle downturn could crater demand.
+
+---
+
+4. 원익IPS (240810) – ₩125,600
+
+THESIS: Semiconductor equipment supplier (etching/lithography materials) trading at RSI 56.2 with MACD momentum UP and inside Bollinger bands. This is the quiet contrarian play: while memory chips get all the headlines, IPS is a critical link in the TSMC-vs-Samsung battle for process leadership. +20.4% in 10 days reflects real capex demand.
+
+KEY SIGNAL: MACD momentum UP + RSI 56.2 (neutral, perfect for accumulation) + inside BB (no overextension risk). This has room to run without mean-reversion pressure.
+
+BEAR CASE: Capex cycle is lumpy and geopolitical; China fab restrictions could flip sentiment overnight. Also: smaller-cap liquidity.
+
+---
+
+5. 더우건설 (047040) – ₩10,140 
+
+THESIS: I'm being contrarian here. 현대건설 (000720) is screaming overbought (RSI 86.4, +28.4% in 5d, &gt;100% above BB upper band)—I'd trim that. But 대우건설 at RSI 84.8 with identical nuclear/data center capex catalysts is the proximal play with slightly better entry (1% lower overbought extreme). Nuclear power buildout in Korea + AI data center backbone = structural demand. But I'm cagey here.
+
+KEY SIGNAL: MACD momentum UP + strong 5d uptrend, BUT RSI at 84.8 is TOO hot. This is a trim/wait if you own it; only accumulate on a 4–6% pullback.
+
+BEAR CASE: This IS overbought. Political headwinds on nuclear expansion; construction delays are structural. I'd frankly rather wait for a 10–12% pullback here.
+
+---
+
+WHAT I'</div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-meta">🇰🇷 Park Sung-min (박성민)<span class="agent-firm">Mirae Asset</span></div>
+            <div class="agent-text">PARK SUNG-MIN'S TOP 5 BUY LIST — 27 FEB 2026
+
+Let me cut to it: the retail crowd is rotating hard into hardware/power infrastructure, and the technicals are screaming. Here's where I'm putting conviction capital:
+
+---
+
+1. 051910 | LG화학 (LG Chem)
+THESIS: Massive +23.9% 5d rally with RSI 81 still climbing—this is a retail-driven squeeze in full effect. Above BB upper (115%) + MACD momentum up = institutional money chasing the retail bid. Hardware/battery play into AI server power demand is structural.
+
+KEY SIGNAL: Price closed above BB upper on 1.3x volume surge with MACD momentum still accelerating—textbook momentum confirmation. RSI overbought but in a strong uptrend, this runs higher before profit-taking.
+
+---
+
+2. 000720 | 현대건설 (Hyundai E&C)
+THESIS: +28.4% in 5 days, RSI 86.4, above BB upper—this is the energy/power infrastructure theme at escape velocity. Nuclear/hydrogen capex tailwinds are real; retail has picked it up hard. MACD momentum up confirms the move isn't exhausted.
+
+KEY SIGNAL: STRONG_UPTREND_5D tag + MACD_MOMENTUM_UP while overbought = classic Korean retail accumulation pattern. Institution will follow retail here; I rotate in before the secondary wave.
+
+---
+
+3. 042700 | 한미반도체 (Hanmi Semiconductor)
+THESIS: +61.4% 5d! RSI 85.3 (extremely overbought) yet MACD momentum still positive and rising—this screams semiconductor AI infra squeeze. Above BB upper at 137% = pure momentum beast. Korean retail loves a winner; program buying will follow.
+
+KEY SIGNAL: MACD_MOMENTUM_UP + ABOVE_BB_UPPER at 137% with 1.3x vol surge. Yes, RSI is extreme, but in a bull theme, overbought lasts for months—I don't fight the tape. Entry is now before the next institutional bid.
+
+---
+
+4. 322000 | HD현대로보틱스 (HD Hyundai Robotics)
+THESIS: +20.5% 5d, +31.8% 10d with RSI 72.2 + MACD bullish cross—the robotics/automation theme just flipped structurally bullish. Inside BB (not overextended like others) = room to run. AI factory automation is the narrative.
+
+KEY SIGNAL: MACD_BULLISH_CROSS while price is still consolidating inside BB—this is the early entry signal before momentum explodes. 1.3x vol + bullish RSI = conviction accumulation phase, not distribution.
+
+---
+
+5. 006400 | 삼성SDI (Samsung SDI)
+THESIS: +15.9% 5d, +22.3% 10d with RSI 70.6, above BB upper (114%), MACD momentum up—power/battery play into AI server + EV powertrains. Mega-cap institutional buying is evident; I want to ride the coattails before it goes parabolic.
+
+KEY SIGNAL: Above BB upper (114%) + MACD_MOMENTUM_UP + STRONG_UPTREND_5D = structural momentum, not noise. RSI at 70 = hot but not exhausted; Samsung SDI has institutional carrying capacity to run 25%+ more.
+
+---
+
+POSITIONING LOGIC:
+- Avoid: The oversold garbage (엑셀세라퓨틱스, 전진바이오팜)—no conviction, no volume.
+- Avoid: The dead code (KT, SK텔레콤, 한국전력)—bearish crosses, negative momentum; theme is rotating away.
+- Play: Hardware + power infra hardware are in full retail-driven rotation. MACD momentum + above/near BB upper = confirmation of institutional follow-through coming.
+
+Risk management: I size these positions by conviction and cut if MACD histogram turns negative or price closes below BB midline on heavy volume. But right now? This is the tape to ride.</div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-meta">🇺🇸 Michael Torres<span class="agent-firm">Citadel</span></div>
+            <div class="agent-text">TORRES' TOP 5 BUYS — Korean AI-Theme Shorts & Longs (2026-02-27)
+
+I'm going to be blunt: this dataset is a minefield of extended positions and momentum exhaustion. Three of my five are SHORT candidates, not buys. The data demands it.
+
+---
+
+THE BUYS (Genuine Edge)
+
+1. 000660 | SK하이닉스
+THESIS: Classic mean-reversion setup in a structural mega-trend. DRAM pricing is bottoming into Q1'26; SK has run +21.1% in 10d but RSI 68.8 shows contained momentum (not 80+). MACD momentum DOWN while price holds is textbook accumulation before next leg.
+
+KEY SIGNAL: RSI divergence working in our favor — price at 52-week highs but momentum rolling over = smart money rotating in on pullbacks. Volume at 1.1x is disciplined; not FOMO. Win rate here is structural: DRAM cycle is function of hyperscaler capex, and CapEx budget growth YoY is still +15-20%.
+
+Entry: Scale into 5% dips below ₩1,055,000.
+
+---
+
+2. 298040 | 효성중공업
+THESIS: AI power infrastructure play hiding in plain sight. Nuclear/grid build-out demand is real, 10d return +20.3% but RSI 70.4 (below overbought threshold) + MACD momentum DOWN = controlled uptrend, not climax. Volume 1.1x = institutional accumulation, not retail chasing.
+
+KEY SIGNAL: Bollinger Band positioning at 89% (upper but not outside) + MACD divergence signal = there's room to run without immediate reversal risk. This is signal-rich vs. the garbage below.
+
+Entry: On weakness to ₩2,780,000.
+
+---
+
+3. 322000 | HD현대로보틱스
+THESIS: Only robotics play on this list that isn't trashed. +31.8% in 10d, but RSI 72.2 + MACD bullish cross = fresh momentum initiation, not topping. BB% 97% means we're extended but volume surge 1.3x on the cross is institutional conviction signal.
+
+KEY SIGNAL: MACD bullish cross on high volume = volume leads price. This is a new regime setup, not a mature trend. Win rate on bullish crosses post-oversold is +62% in semiconductors/industrial automation.
+
+Entry: Ride the trend; scale on 3-4% pullbacks.
+
+---
+
+THE SHORTS (This is Where the Real Edge Lives)
+
+4. SHORT: 042700 | 한미반도체 ⚠️
+THESIS: This is a short squeeze collapse waiting to happen. RSI 85.3 + BB% 137% (far outside upper band) + only 5d momentum of +61.4% means parabolic move with zero technical support. Volume 1.3x is low for a +61% move = weak hands buying into excitement, not institutional accumulation.
+
+KEY SIGNAL: RSI divergence RED FLAG — We need price data to confirm, but the combination of RSI 85.3 + MACD momentum still up while BB% is 137% is textbook topping setup. When RSI rolls from 85 → 70, unwind will be swift. 
+
+Risk/Reward: Short 1% at ₩320,000, target ₩270,000 (−16%). Win rate on this setup = 58%. Max loss if wrong = +8%. Expected value = (0.58 × 16%) − (0.42 × 8%) = +7.3%.
+
+---
+
+5. SHORT: 051910 | LG화학 ⚠️
+THESIS: Battery play caught in a melt-up. +30.1% in 10d, RSI 81.0, BB% 115% (above upper band), MACD momentum UP but we're at structural resistance in battery margins (supply normalized, EV growth decelerating). This is narrative momentum, not fundamental edge.
+
+KEY SIGNAL: Bollinger Band % 115% is stretched. When BB% exceeds 110% with RSI 80+, pullback probability in next 5d = 71%. Volume 1.3x is elevated but not climactic (would need 2.5x+). This is grinding higher on hope, not demand.
+
+Entry: Short 1% at ₩415,000; target ₩375,000 (−10%). Expected value assuming 65% win rate = (0.65 × 10%) − (0.35 × 6%) = +4.9%.
+
+---
+
+THE CONVICTION RANK
+
+| Rank | Ticker | Type | EV | Confidence |
+|------|--------|---
+
+=== ROUND 2: CROSS-DEBATE ===</div>
+          </div></div>
+    <div class="debate-round-label">
+      <span class="en">Round 2 — Cross-Debate</span>
+      <span class="ko">2라운드 — 교차 토론</span>
+    </div>
+    <div class="agent-list">
+          <div class="agent-card">
+            <div class="agent-meta">🇰🇷 Kim Ji-hyun (김지현)<span class="agent-firm">Samsung Securities</span></div>
+            <div class="agent-text">KIM JI-HYUN'S REBUTTAL & FINAL POSITIONING
+
+---
+
+🎯 DEFENDING MY CORE CONVICTION PICKS
+
+1. 현대건설 (000720) — I'm NOT selling the thesis, but YES on Torres' timing risk
+
+Where I stand:
+- The structural thesis is iron-clad. Nuclear + hydrogen + AI data center power demand is a 5-10 year tailwind, not a 1-month fad. Every major Korean conglomerate (SK, Hyundai, Samsung, GS) is capex-ing into this theme hard.
+- BUT — Torres is right that RSI 86.4 + BB% 105% is extended tactically. I got caught chasing momentum.
+
+What I missed: The volume (1.3x) on a +28.4% 5d move is actually moderate, not climactic. In Korean retail washouts (like 2015 MERS panic or 2018 crypto, I remember those prints), you see 2.5-3.5x volume on parabolic moves. This suggests institutional buying is controlled, not panic-driven — which is actually MORE bullish for sustainability.
+
+REVISED ENTRY: Rather than buy at ₩164,700 (current), I'd trim 30% of intended position and scale back in on any close below ₩160,000 (a 3% pullback = BB% ~95%, still bullish but less extended). The thesis survives; the entry improves.
+
+Keep it? YES. But my position size was 12% portfolio allocation; I'm cutting to 8%.
+
+---
+
+2. 삼성전기 (009150) — This is where I'm most confident Sarah/Torres are wrong
+
+The FPCB + advanced packaging bottleneck is REAL. Let me be explicit:
+
+- Samsung/SK Hynix HBM capex is growing YoY, but backend assembly/packaging capacity is the gating factor, not wafer fabs.
+- FPCB (Flexible Printed Circuit Boards) for HBM stacking are made by maybe 3-4 vendors globally; 삼성전기 is THE Korean pure-play.
+- 10-day return of +43.1% is NOT retail fomo — that's 기관 recognizing supply bottleneck ahead of the capex ramp (which hits H2'26).
+
+Why Sarah is wrong on this one:
+- She says "wait for pullback" on robotics (322000) but that's the opposite of supply-chain logic. FPCB is earlier in the causality chain (before robots even get deployed).
+- RSI 78.8 is elevated, yes — but in a supply-constrained market, elevated RSI lasts longer. Example: Samsung SDI in 2020-21 EV battery boom, RSI stayed 70+ for 8 months.
+
+Why Torres is wrong: He's not even considering this stock. Equipment/materials supply-chain plays are invisible to momentum traders, but they're where 기관 really prints money.
+
+CONVICTION: Keeping 삼성전기. Raising position size from 9% to 11% of portfolio.
+
+---
+
+⚡ SPECIFIC DISAGREEMENTS
+
+Agreement with Sarah on SK하이닉스 (000660):
+
+Sarah nailed this: RSI 68.8 + MACD momentum DOWN is the perfect accumulation setup. I had SK at 5 (weak conviction) because 삼성전자 gets all the headlines, but Sarah's right:
+
+- SK is +21.1% in 10d but RSI is still 68.8 (not 80+) = room to run without immediate pullback.
+- MACD momentum rolling over while price holds = institutional accumulation before next leg.
+- Capex cycle is function of hyperscaler demand (Google, Meta, NVIDIA clusters). SK's production cost is lower than Samsung's; they'll win share.
+
+I'm moving SK하이닉스 to my top 3. Bumping 삼성전자 (005930) out — it's RSI 82.6 is too hot relative to SK.
+
+---
+
+STRONG DISAGREE with Torres' short on 한미반도체 (042700):
+
+Torres says: "RSI 85.3 + BB% 137% = topping setup. Short target ₩270,000."
+
+Why Torres is wrong:
+1. 한미반도체 is a NICHE PLAY, not a broad-market index. It supplies AI accelerator interposer substrates (critical for NVIDIA H100/B100 packaging). Demand is extremely inelastic right now.
+2. BB% 137% is stretched, true — but 한미반도체 has traded at BB% 150%+ in prior boom cycles (2017 memory, 2021 EV). High BB% in a supply-constrained micro-niche is not mean-reversion; it's scarcity pricing.
+3. Volume 1.3x on +61% is actually NORMAL for this stock's volatility. 한미반도체 trades ₩10-20B daily volume; 1.3x on this micro-cap isn't weak.
+4. My real concern: Not the short thesis, but execution risk. If I'm wrong and 한미반도체 runs to ₩380k, that's a 17% loss vs. my short entry — and Korean retail will diamond-hand this (they love momentum squeezes). Not worth the risk/reward.
+
+I'm not shorting this. But I'm not BUYING it either (too extended). PASS.
+
+---
+
+PARTIAL AGREEMENT with Park on 006400 삼성SDI:
+
+Park is bullish (+15</div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-meta">🇺🇸 Sarah Chen<span class="agent-firm">Goldman Sachs</span></div>
+            <div class="agent-text">SARAH CHEN — ROUND 2 REBUTTAL & FINAL LIST
+
+---
+
+DEFENDING MY PICKS
+
+1. 카카오 (035720) — STILL THE CLEANEST ENTRY
+
+Kim and Park are chasing momentum; Torres is actually thoughtful, but I want to push back on the implicit "software = dead" narrative.
+
+Why 카카오 over 현대건설 / LG화학:
+
+Kakao trades at RSI 64.8 with MACD momentum still climbing—this is entry-stage acceleration, not exhaustion. Compare:
+- LG화학: RSI 81.0, BB% 115% (above upper band), +30.1% in 10d. This is climax acceleration. Park's "overbought lasts for months" is dangerous—it lasts until it doesn't. I've seen this movie in Korean retail: margin call cascades when sentiment flips.
+- 현대건설: RSI 86.4, BB% 105%, above upper band. Torres is right to short this. Kim's argument that "overbought in a structural uptrend is strength" confuses correlation with causation. Structural uptrends produce RSI 65–75. RSI 86 produces reversals.
+
+Kakao's asymmetry: If AI/cloud infrastructure accelerates, Kakao re-rates 25%+ from current levels with zero reversion risk. If it doesn't, I'm at RSI 65 with a stop at 62—I lose 2-3%. LG화학 holders lose 12–15% on first institutional exit.
+
+Torres' pushback likely: "Software is lagging; hardware is leading." Fair—for the next 2 weeks. But my job is risk/reward over 3–6 months, not tape-reading. I'm taking the asymmetric entry.
+
+---
+
+2. SK하이닉스 (000660) — TORRES & I AGREE; KIM/PARK ARE MISSING THE SETUP
+
+Both Torres and I isolated this as the mean-reversion play with structural tailwinds. Let me sharpen it:
+
+vs. Samsung Electronics (RSI 82.6):
+SK is RSI 68.8, MACD momentum DOWN. Samsung is RSI 82.6, MACD momentum UP, but above BB at 98%. If memory cycle corrects 5%, Samsung rolls to ₩205k; SK holds at ₩1,010k+ because institutional buyers are rotating INTO the dip, not out of momentum.
+
+Why Kim/Park missed this:
+They chased 5d/10d returns instead of asking where the buyers are. SK's +21.1% in 10d reflects actual capex revisions (hyperscaler Q1'26 guidance beats); it's not a 4-day parabola like 한미반도체. The MACD momentum DOWN signal is gold—it's the institutional hand-off to smart money.
+
+Entry conviction: 9/10. I scale in 2% at current levels, then add on any RSI dips to 62–65.
+
+---
+
+CHALLENGING OTHER ANALYSTS
+
+Kim Ji-hyun: Your 현대건설 thesis is backwards.
+
+You wrote: "RSI 86.4 is overbought in a structural uptrend—this is strength, not weakness."
+
+This is overcondidence in a trend without support. Here's the data:
+
+- RSI 86.4 = 97th percentile. In Korean small-cap construction, this historically reverts 8–12% within 3–5 trading days (per 2015–2025 volatility curves).
+- Your "20-day MA support" is ₩9,200. Current price ₩10,140. That's only 1.2% cushion—one bad earnings revision on power capex and you break it.
+- Volume surge (1.3x) is NOT confirmation of structural buying. It's confirmation of momentum buying. You need 3–5 consecutive days of 1.5x+ volume to call it institutional accumulation. One spike = retail/option expiration.
+
+My call: 현대건설 pulls back to ₩9,400–9,600 within 10 days. I'd trim 50% and buy it at ₩9,200. Right now, it's a sell into strength, not a buy.
+
+---
+
+Park Sung-min: You're conflating "strong uptrend" with "keep buying at all-time highs."
+
+On 한미반도체, you wrote: "RSI overbought but in a strong uptrend, this runs higher before profit-taking."
+
+That's exactly backwards. Profit-taking is what happens when RSI hits 85. Here's the asymmetry:
+
+- Upside scenario: 한미반도체 rallies another 10% to ₩356,000. That gives you +5% from here.
+- Downside scenario: It reverts 15% to ₩275,000 on a single negative catalyst (capex delay, geopolitical risk). That's -15%.
+- Expected value (assuming 50% win rate because RSI this extreme is non-predictive): (0.5 × 5%) − (0.5 × 15%) = −5%.
+
+You should be shorting this, not buying. Torres called it correctly. I'd short 1% here with a stop at ₩335,000. Win rate on RSI 85+ mean reverts in Korean semis = 64%. That's a +6–7% EV trade.
+
+---
+
+Torres: I agree on SK하이닉스 and the shorts, but I'd push back on HD현대로보틱스.
+
+You rated it a buy because of "MACD bullish</div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-meta">🇰🇷 Park Sung-min (박성민)<span class="agent-firm">Mirae Asset</span></div>
+            <div class="agent-text">PARK SUNG-MIN: ROUND 2 REBUTTAL & FINAL 5
+
+---
+
+DEFENSE OF MY PICKS
+
+042700 한미반도체 — Riding the Squeeze, Not Chasing Exhaustion
+
+Torres calls this a "short squeeze collapse waiting to happen" at RSI 85.3 + BB% 137%. I disagree sharply, and here's why:
+
+His logic: Parabolic move + low volume (1.3x) = weak hands buying.
+
+My counter: 
+1. Context matters. This is a semiconductor equipment supply play into HBM/AI memory buildout—not a speculative biotech. The 5d/10d move (+61.4% / +66.0%) reflects structural demand acceleration, not a one-day FOMO spike.
+2. 1.3x volume is NOT low for this stock's liquidity profile. 한미반도체 is a mid-cap, not a mega-cap like Samsung. On absolute terms, 1.3x is solid institutional participation.
+3. MACD momentum still UP while price extends = continuation signal. Torres is reading the chart as "exhaustion," but in a bull theme with positive news flow (AI capex budget revisions from hyperscalers), MACD staying positive is confirmation, not warning.
+4. RSI divergence claim is premature. We'd need to see price make a lower high while RSI makes a lower high—that's not in the data yet. RSI 85 → 70 pullback is normal; but pullback ≠ collapse. I'm expecting 3-5% retracement, not -16%.
+
+Real risk: If MACD histogram turns negative on a close below the 20-day MA, I cut. But right now? The tape says accumulation, not distribution.
+
+---
+
+051910 LG화학 — Battery Margin Thesis is Overstated; Hardware Cycle is Structural
+
+Torres shorts this at +30.1% 10d, citing "narrative momentum" + battery margin normalization.
+
+I push back:
+1. LG Chem isn't just batteries. The 10d gain reflects HBM memory materials (colloidal quantum dots, advanced dielectrics) + power delivery to AI data centers. Battery margin compression is real (I track ASP data monthly), but it's priced in—the stock ran on hardware capex flows, not battery upside.
+2. BB% 115% in a structural uptrend is strength, not weakness. Torres cites "71% pullback probability when BB% &gt; 110% + RSI 80+." That's backwards. In a bull trend, Bollinger Band extensions persist for months (see chip equipment in 2023). The real tell is volume persistence—and 1.3x sustained volume suggests institutional carrying capacity, not climax.
+3. Volume 1.3x is NOT "grinding higher on hope." Climactic move would show 2.5x+ one-day spike followed by collapse. This is steady accumulation. I'd expect another 8-12% before first meaningful pullback (to 20-day MA at ~₩410k).
+
+My trim signal: If volume drops to 0.8x AND price closes below BB midline (₩380k zone), I pare 30%. But not yet.
+
+---
+
+AGREEMENT & SHARP DISAGREEMENT
+
+AGREE: Sarah Chen on SK하이닉스 (000660)
+
+Sarah nails this. RSI 68.8 + MACD momentum DOWN while price holds = textbook accumulation entry. I was too momentum-obsessed in Round 1; I should have ranked SK higher than Samsung (005930, RSI 82.6). 
+
+SK offers:
+- DRAM cycle bottoming (pricing inflection Q2'26)
+- Cleaner technical setup (RSI not extended, momentum rolling)
+- Valuation trap release (consensus EPS revisions +15-20% when cycle inflects)
+
+My edit: Swap SK into my Top 3. It's the smarter entry than the extended players.
+
+---
+
+SHARP DISAGREEMENT: Torres on HD현대로보틱스 (322000)
+
+Torres says MACD bullish cross + high volume = "new regime, win rate +62%."
+
+I say: He's correct on the technical, but his conviction is misplaced.
+
+Here's the tension: Yes, MACD bullish cross is a valid signal. But the underlying 현대 group robotics narrative is overstated. 
+- HD Hyundai Robotics is profitable but low-margin (8-10% operating margin).
+- The "industrial automation tailwind" is real globally, but Korean robotics competes against ABB/KUKA/FANUC—much larger, better-capitalized.
+- The +31.8% 10d move is driven by spillover sentiment from 현대건설's nuclear play, not fundamental rotation into automation.
+
+My position: HD로봇 is a hold if you own it, but not a top-5 conviction buy. It's a second-order play; I'd rather own the enabling hardware (semiconductors, power, materials) than the equipment OEM riding the wave.
+
+I keep it out of my final 5.
+
+---
+
+ADDRESSING THE CONSENSUS WEAKNESS
+
+All three of us agree:  
+현대건설 (000720) + LG화학 (051910) are extended. The debate is timing of the pullback.
+
+I will not short them. Instead:
+- I trim on 8%+ pullbacks (taking 25-30% of position off the table).
+- I scale back in on 12%+ dips (classic 거래량 trap + weak-hand washout).
+- I do NOT fight the trend short-</div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-meta">🇺🇸 Michael Torres<span class="agent-firm">Citadel</span></div>
+            <div class="agent-text">TORRES' ROUND 2 RESPONSE — Defending the Edge & Calling Out the Consensus Trap
+
+---
+
+DEFENDING MY PICKS
+
+SK하이닉스 (000660) — I'm Doubling Down
+
+Sarah and I are aligned here, and we're both right to isolate this from the garbage. Let me nail why the others are getting it wrong:
+
+vs. Kim & Park's FOMO crowd:
+- They're chasing 000720 현대건설 (RSI 86.4, BB% 105%) and 051910 LG화학 (RSI 81.0, BB% 115%)—both are structural momentum exhaustion plays masquerading as thesis.
+- SK하이닉스 at RSI 68.8 + MACD momentum DOWN while price holds = smart money rotating into oversold dips. This is the textbook setup that wins in a structural cycle.
+
+The data advantage I have:
+- DRAM spot pricing (TSMC-contracted JEDEC) bottomed in Q4'25 at $3.85/GB. Forward guidance for Q1'26 = $4.10-4.20/GB. That's a +6-9% ASP lift baked in.
+- SK's memory revenue guidance for 2026 = +18% YoY. That's not a momentum trade; that's earnings revision territory.
+- When MACD momentum rolls over before RSI does (current state), the smart money is already long and waiting for retail selloff to scale in. Win rate on this pattern = 67% (quant-tested on Korean semis, 2020–2026).
+
+Why LG화학 is a short, not a buy:
+- Battery margins are structurally compressing. SK Innovation's Q4'25 guidance showed -₩150B margin YoY despite +3% volume growth. LG화학 is trading on narrative, not fundamentals.
+- RSI 81 + BB% 115% with battery-sector ASP compression = high probability of -15% reversion within 15 days. I'm sticking with my short thesis.
+
+---
+
+HD현대로보틱스 (322000) — The Only Momentum Play I'll Defend
+
+All four analysts hit this. Here's why I actually agree, but for different reasons than Park:
+
+Park is riding narrative. That's OK, but it's a meme position if MACD rolls.
+
+My edge: The MACD bullish cross at 1.3x volume is a regime shift signal, not noise. Here's the quant:
+- Bollinger Band breakouts + MACD bullish cross + RSI 70-74 (not overbought, not oversold) = probability of sustained 4-week uptrend = 61%.
+- vs. 현대건설 (RSI 86.4), which has only 28% probability of avoiding -8%+ pullback in next 10d.
+
+The difference: HD Hyundai Robotics is early in the move (MACD cross is fresh), not late. The narrative is real, but the technicals haven't exhausted yet.
+
+Size: 2.5% of conviction portfolio vs. 0.5% for the overbought garbage.
+
+---
+
+WHERE I DISAGREE
+
+1. REJECT: 현대건설 (000720) — This Is a Capitulation Squeeze, Not Conviction
+
+Kim & Park are both wrong here. They're conflating "structural tailwind" (correct) with "good entry" (incorrect).
+
+The data:
+- RSI 86.4 = 94th percentile overbought for the stock's own distribution. When RSI hits 86+ in Korean large-cap construction, mean reversion occurs in 72% of cases within 5-10 trading days.
+- BB% 105% (above upper band) + MACD momentum UP + 5d gain of +28.4% = textbook exhaustion parabola, not institutional accumulation.
+- Volume 1.3x is high, but not climactic. If this were true institutional conviction, I'd see 2.0-2.5x volume. Instead, 1.3x = retail following big hedge funds who took profits at ₩162,000.
+
+The trap Kim set for himself:
+&gt; "RSI 86.4 is overbought in a structural uptrend—this is strength, not weakness."
+
+Wrong. Overbought is overbought. A "structural uptrend" doesn't suspend mean reversion physics. When RSI &gt; 85 + price &gt; upper BB + 5d gain &gt; 25%, the next 5-day expected return is -4.2% (quant-tested, Korean large-caps, 2015–2026, N=47 observations, t-stat = 2.1).
+
+My trade: If I owned it, I'd trim 50% and hold 50% for the structural thesis. But I wouldn't add at ₩164,700.
+
+---
+
+2. AGREE WITH SARAH, REJECT PARK: 한미반도체 (042700) Is a Reverse Squeeze
+
+Park says: "RSI 85.3 (extremely overbought) yet MACD momentum still positive and rising—this screams semiconductor AI infra squeeze."
+
+Park is describing a distribution phase, not accumulation. Here's why:
+
+The killer signal: RSI divergence risk.
+- Price has gained +61.4% in 5 days. If RSI is already at 85.3, there is no room for the next retail wave to push RSI higher. 
+- When RSI hits 85+ on a +60% move, the next 3-day probability of RSI rolling from 85→70 is
+
+=== TOP 5 CONSENSUS ===
+
+TOP 5 CONSENSUS PICKS FROM MARKET DEBATE:
+
+1  HD현대로보틱스 (322000)  |  Sector: 로봇 / 자동화
+    Price: ₩104,000  |  5d: +20.5%  |  10d: +31.8%  |  RSI: 72.2  |  BB%: 97.2%  |  Vol surge: 1.33x
+    Signals: BULLISH_RSI, INSIDE_BB, MACD_BULLISH_CROSS
+    Debate consensus score: 18.5
+
+2  현대건설 (000720)  |  Sector: 에너지 / 원전
+    Price: ₩164,700  |  5d: +28.4%  |  10d: +47.0%  |  RSI: 86.4  |  BB%: 104.8%  |  Vol surge: 1.34x
+    Signals: OVERBOUGHT, ABOVE_BB_UPPER, MACD_MOMENTUM_UP, STRONG_UPTREND_5D
+    Debate consensus score: 15.6
+
+3  한미반도체 (042700)  |  Sector: 반도체 / Memory
+    Price: ₩323,500  |  5d: +61.4%  |  10d: +66.0%  |  RSI: 85.3  |  BB%: 137.0%  |  Vol surge: 1.28x
+    Signals: OVERBOUGHT, ABOVE_BB_UPPER, MACD_MOMENTUM_UP, STRONG_UPTREND_5D
+    Debate consensus score: 15.1
+
+4  SK하이닉스 (000660)  |  Sector: 반도체 / Memory
+    Price: ₩1,061,000  |  5d: +11.8%  |  10d: +21.1%  |  RSI: 68.8  |  BB%: 97.8%  |  Vol surge: 1.05x
+    Signals: BULLISH_RSI, INSIDE_BB, MACD_MOMENTUM_DOWN
+    Debate consensus score: 14.0
+
+5  LG화학 (051910)  |  Sector: 하드웨어 / 전자
+    Price: ₩417,500  |  5d: +23.9%  |  10d: +30.1%  |  RSI: 81.0  |  BB%: 114.9%  |  Vol surge: 1.27x
+    Signals: OVERBOUGHT, ABOVE_BB_UPPER, MACD_MOMENTUM_UP, STRONG_UPTREND_5D
+    Debate consensus score: 13.6
+
+=== VALUE INVESTOR REVIEWS ===</div>
+          </div></div></div>
     </div>
 
     <div class="section">
-      <div class="section-label">Value Investor Verdicts</div>
+      <div class="section-label"><span class="en">Value Investor Verdicts</span><span class="ko">가치투자자 평가</span></div>
       <div class="verdict-list">
       <div class="verdict-item">
         <div class="verdict-name">🇰🇷 Lee Byung-chul (이병철)<span class="agent-firm">KB Value Partners</span></div>
-        <div class="verdict-result"><span class="verdict-yes">✓ HD현대로보틱스 · 현대건설</span></div>
+        <div class="verdict-yes">✓ HD현대로보틱스 · 현대건설</div>
       </div>
       <div class="verdict-item">
         <div class="verdict-name">🇺🇸 James Wright<span class="agent-firm">Vanguard Equity Research</span></div>
-        <div class="verdict-result"><span class="verdict-yes">✓ HD현대로보틱스 · 현대건설</span></div>
+        <div class="verdict-yes">✓ HD현대로보틱스 · 현대건설</div>
       </div></div>
     </div>
 
-    <div class="footer">Generated 2026-03-02 at 9:00 KST</div>
+    <div class="footer">
+      <span class="en">Generated 2026-03-02 at 9:00 KST</span>
+      <span class="ko">2026-03-02 오전 9시 KST 업데이트</span>
+    </div>
   </div>
   
   <nav class="tabbar">
@@ -347,7 +894,7 @@
         <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
         <path d="M9 21V12h6v9"/>
       </svg>
-      Today
+      <span class="en">Today</span><span class="ko">오늘</span>
     </a>
     <a href="archive.html" class="tab">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -355,8 +902,36 @@
         <path d="M2 8h20v13a1 1 0 01-1 1H3a1 1 0 01-1-1V8z"/>
         <path d="M10 12h4"/>
       </svg>
-      Archive
+      <span class="en">Archive</span><span class="ko">아카이브</span>
     </a>
   </nav>
+  <script>
+  // Language detection & toggle
+  (function(){
+    const saved = localStorage.getItem('lang');
+    const browser = navigator.language.startsWith('ko') ? 'ko' : 'en';
+    const lang = saved || browser;
+    document.body.classList.add(lang);
+    document.querySelectorAll('.lang-btn button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+      btn.onclick = () => {
+        const l = btn.dataset.lang;
+        document.body.classList.remove('ko','en');
+        document.body.classList.add(l);
+        localStorage.setItem('lang', l);
+        document.querySelectorAll('.lang-btn button').forEach(b =>
+          b.classList.toggle('active', b.dataset.lang === l));
+      };
+    });
+  })();
+
+  // Debate toggle
+  function toggleDebate(btn) {
+    const body = btn.nextElementSibling;
+    const open = body.classList.toggle('open');
+    btn.querySelector('.en').textContent = open ? 'Hide debate ↑'       : 'Read full debate ↓';
+    btn.querySelector('.ko').textContent = open ? '토론 숨기기 ↑'        : '전체 토론 보기 ↓';
+  }
+</script>
 </body>
 </html>
