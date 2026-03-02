@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <title>AI Stock Debate — 2026-03-02</title>
+  <style>
+  :root {
+    --bg:          #ffffff;
+    --surface:     #f5f5f7;
+    --surface2:    #e8e8ed;
+    --border:      #d2d2d7;
+    --text:        #1d1d1f;
+    --secondary:   #6e6e73;
+    --accent:      #0071e3;
+    --accent-bg:   #e8f0fe;
+    --green:       #1a7f47; --green-bg:  #d1fae5;
+    --blue:        #1e40af; --blue-bg:   #dbeafe;
+    --red:         #9b1c1c; --red-bg:    #fee2e2;
+    --amber:       #78350f; --amber-bg:  #fef3c7;
+    --purple:      #5b21b6; --purple-bg: #ede9fe;
+    --gray-text:   #374151; --gray-bg:   #f3f4f6;
+    --tab-h:       56px;
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:        #000000;
+      --surface:   #1c1c1e;
+      --surface2:  #2c2c2e;
+      --border:    #38383a;
+      --text:      #f5f5f7;
+      --secondary: #98989f;
+      --accent:    #0a84ff;
+      --accent-bg: #1a2a40;
+      --green:     #30d158; --green-bg:  #0a2a1a;
+      --blue:      #64d2ff; --blue-bg:   #0a1a2a;
+      --red:       #ff453a; --red-bg:    #2a0a0a;
+      --amber:     #ffd60a; --amber-bg:  #2a1f00;
+      --purple:    #bf5af2; --purple-bg: #1a0a2a;
+      --gray-text: #ebebf5; --gray-bg:   #2c2c2e;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, "SF Pro Text", BlinkMacSystemFont,
+                 "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: calc(var(--tab-h) + var(--safe-bottom) + 8px);
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── top nav ── */
+  .topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(var(--bg-rgb, 255,255,255), .85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--border);
+    height: 52px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px;
+  }
+  @media (prefers-color-scheme: dark) {
+    .topnav { background: rgba(0,0,0,.85); }
+  }
+  .topnav-brand { font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+  .topnav-sub   { font-size: 13px; color: var(--secondary); }
+
+  /* ── bottom tab bar ── */
+  .tabbar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: calc(var(--tab-h) + var(--safe-bottom));
+    padding-bottom: var(--safe-bottom);
+    background: rgba(var(--bg-rgb, 255,255,255), .92);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-top: 1px solid var(--border);
+    display: flex;
+    z-index: 100;
+  }
+  @media (prefers-color-scheme: dark) {
+    .tabbar { background: rgba(0,0,0,.92); }
+  }
+  .tab {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 500; color: var(--secondary);
+    gap: 3px; cursor: pointer; -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+  }
+  .tab.active { color: var(--accent); }
+  .tab svg { width: 24px; height: 24px; }
+
+  /* ── page container ── */
+  .page { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+
+  /* ── section ── */
+  .section { padding: 36px 0; border-bottom: 1px solid var(--border); }
+  .section:last-of-type { border-bottom: none; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--secondary);
+    margin-bottom: 20px;
+  }
+
+  /* ── hero ── */
+  .hero { padding: 44px 0 36px; text-align: center; border-bottom: 1px solid var(--border); }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--secondary); margin-bottom: 12px;
+  }
+  .hero-title {
+    font-size: clamp(30px, 7vw, 46px); font-weight: 700;
+    letter-spacing: -.03em; line-height: 1.08; margin-bottom: 12px;
+  }
+  .hero-sub { font-size: 15px; color: var(--secondary); line-height: 1.5; }
+
+  /* ── pick cards ── */
+  .picks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .pick-card {
+    background: var(--surface); border-radius: 16px;
+    padding: 22px 22px 18px;
+  }
+  .pick-ticker { font-size: 12px; font-weight: 500; color: var(--secondary); margin-bottom: 6px; }
+  .pick-name   { font-size: 20px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 10px; }
+  .pick-change { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 14px; }
+  .pick-label  { font-size: 13px; font-weight: 400; color: var(--secondary); }
+  .pick-signals { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  /* ── signal pill ── */
+  .pill {
+    font-size: 10px; font-weight: 600; padding: 3px 8px;
+    border-radius: 20px; white-space: nowrap; display: inline-block;
+  }
+
+  /* ── rankings (mobile-first stacked list) ── */
+  .rank-list { display: flex; flex-direction: column; gap: 1px; background: var(--border);
+               border-radius: 14px; overflow: hidden; }
+  .rank-item { background: var(--bg); padding: 16px 18px; display: flex; align-items: center; gap: 14px; }
+  .rank-item.selected { background: var(--green-bg); }
+  @media (prefers-color-scheme: dark) { .rank-item.selected { background: var(--green-bg); } }
+  .rank-num { font-size: 11px; font-weight: 700; color: var(--secondary); width: 20px; flex-shrink: 0; }
+  .rank-info { flex: 1; min-width: 0; }
+  .rank-name { font-size: 15px; font-weight: 600; margin-bottom: 3px;
+               white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rank-sector { font-size: 12px; color: var(--secondary); margin-bottom: 6px; }
+  .rank-signals { display: flex; flex-wrap: wrap; gap: 4px; }
+  .rank-right { text-align: right; flex-shrink: 0; }
+  .rank-change { font-size: 16px; font-weight: 700; }
+  .rank-meta { font-size: 11px; color: var(--secondary); margin-top: 2px; }
+  .selected-badge {
+    display: inline-block; background: var(--green); color: #fff;
+    font-size: 9px; font-weight: 700; padding: 2px 6px;
+    border-radius: 8px; margin-left: 6px; vertical-align: middle;
+    letter-spacing: .04em;
+  }
+
+  /* ── agent cards ── */
+  .agent-list { display: flex; flex-direction: column; gap: 1px;
+                background: var(--border); border-radius: 14px; overflow: hidden; }
+  .agent-card { background: var(--bg); padding: 18px 18px 16px; }
+  .agent-meta { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .agent-firm { font-size: 12px; color: var(--secondary); font-weight: 400; margin-left: 6px; }
+  .agent-text { font-size: 14px; color: var(--secondary); line-height: 1.55; }
+
+  /* ── verdicts ── */
+  .verdict-list { display: flex; flex-direction: column; gap: 1px;
+                  background: var(--border); border-radius: 14px; overflow: hidden; }
+  .verdict-item { background: var(--bg); padding: 16px 18px; }
+  .verdict-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .verdict-result { font-size: 14px; }
+  .verdict-yes { color: var(--green); font-weight: 600; }
+  .verdict-no  { color: var(--secondary); }
+
+  /* ── archive grid ── */
+  .archive-grid { display: flex; flex-direction: column; gap: 1px;
+                  background: var(--border); border-radius: 14px; overflow: hidden; }
+  .archive-item {
+    background: var(--bg); padding: 16px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    text-decoration: none; color: var(--text);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .archive-item:active { background: var(--surface); }
+  .archive-date { font-size: 15px; font-weight: 600; }
+  .archive-picks { font-size: 13px; color: var(--secondary); margin-top: 3px; }
+  .archive-chevron { color: var(--border); font-size: 18px; }
+
+  /* ── footer ── */
+  .footer { padding: 28px 0; text-align: center; font-size: 12px; color: var(--secondary); }
+</style>
+</head>
+<body>
+  
+  <div class="topnav">
+    <a href="../archive.html" style="font-size:15px;color:var(--accent);">‹ Back</a>
+    <span class="topnav-sub">2026-03-02</span>
+  </div>
+  
+  <div class="page">
+    <div class="hero">
+      <div class="hero-eyebrow">Korean AI Stocks · 2026-03-02</div>
+      <h1 class="hero-title">Today's Picks</h1>
+      <p class="hero-sub">6 analysts · 67 stocks · Bollinger Bands · RSI · MACD</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Selected Today</div>
+      <div class="picks-grid">
+      <div class="pick-card">
+        <div class="pick-ticker">322000</div>
+        <div class="pick-name">HD현대로보틱스</div>
+        <div class="pick-change" style="color:var(--green)">+20.5% <span class="pick-label">5-day</span></div>
+        <div class="pick-signals"><span class="pill" style="background:var(--green-bg);color:var(--green);">BULLISH RSI</span><span class="pill" style="background:var(--gray-bg);color:var(--gray-text);">INSIDE BB</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD BULLISH CROSS</span></div>
+      </div>
+      <div class="pick-card">
+        <div class="pick-ticker">000720</div>
+        <div class="pick-name">현대건설</div>
+        <div class="pick-change" style="color:var(--green)">+28.4% <span class="pick-label">5-day</span></div>
+        <div class="pick-signals"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Consensus Rankings</div>
+      <div class="rank-list">
+      <div class="rank-item selected">
+        <div class="rank-num">01</div>
+        <div class="rank-info">
+          <div class="rank-name">HD현대로보틱스<span class="selected-badge">SELECTED</span></div>
+          <div class="rank-sector">로봇 / 자동화</div>
+          <div class="rank-signals"><span class="pill" style="background:var(--green-bg);color:var(--green);">BULLISH RSI</span><span class="pill" style="background:var(--gray-bg);color:var(--gray-text);">INSIDE BB</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD BULLISH CROSS</span></div>
+        </div>
+        <div class="rank-right">
+          <div class="rank-change" style="color:var(--green)">+20.5%</div>
+          <div class="rank-meta">RSI 72.2 · BB 97.2%</div>
+          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+        </div>
+      </div>
+      <div class="rank-item selected">
+        <div class="rank-num">02</div>
+        <div class="rank-info">
+          <div class="rank-name">현대건설<span class="selected-badge">SELECTED</span></div>
+          <div class="rank-sector">에너지 / 원전</div>
+          <div class="rank-signals"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
+        </div>
+        <div class="rank-right">
+          <div class="rank-change" style="color:var(--green)">+28.4%</div>
+          <div class="rank-meta">RSI 86.4 · BB 104.8%</div>
+          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+        </div>
+      </div>
+      <div class="rank-item ">
+        <div class="rank-num">03</div>
+        <div class="rank-info">
+          <div class="rank-name">한미반도체</div>
+          <div class="rank-sector">반도체 / Memory</div>
+          <div class="rank-signals"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
+        </div>
+        <div class="rank-right">
+          <div class="rank-change" style="color:var(--green)">+61.4%</div>
+          <div class="rank-meta">RSI 85.3 · BB 137.0%</div>
+          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+        </div>
+      </div>
+      <div class="rank-item ">
+        <div class="rank-num">04</div>
+        <div class="rank-info">
+          <div class="rank-name">SK하이닉스</div>
+          <div class="rank-sector">반도체 / Memory</div>
+          <div class="rank-signals"><span class="pill" style="background:var(--green-bg);color:var(--green);">BULLISH RSI</span><span class="pill" style="background:var(--gray-bg);color:var(--gray-text);">INSIDE BB</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">MACD MOMENTUM DOWN</span></div>
+        </div>
+        <div class="rank-right">
+          <div class="rank-change" style="color:var(--green)">+11.8%</div>
+          <div class="rank-meta">RSI 68.8 · BB 97.8%</div>
+          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+        </div>
+      </div>
+      <div class="rank-item ">
+        <div class="rank-num">05</div>
+        <div class="rank-info">
+          <div class="rank-name">LG화학</div>
+          <div class="rank-sector">하드웨어 / 전자</div>
+          <div class="rank-signals"><span class="pill" style="background:var(--red-bg);color:var(--red);">OVERBOUGHT</span><span class="pill" style="background:var(--amber-bg);color:var(--amber);">ABOVE BB UPPER</span><span class="pill" style="background:var(--green-bg);color:var(--green);">MACD MOMENTUM UP</span><span class="pill" style="background:var(--blue-bg);color:var(--blue);">STRONG UPTREND 5D</span></div>
+        </div>
+        <div class="rank-right">
+          <div class="rank-change" style="color:var(--green)">+23.9%</div>
+          <div class="rank-meta">RSI 81.0 · BB 114.9%</div>
+          <div class="rank-meta" style="color:var(--secondary);">Score 0.0</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">The Debate</div>
+      <div class="agent-list">
+      <div class="agent-card">
+        <div class="agent-meta">🇰🇷 Kim Ji-hyun (김지현)<span class="agent-firm">Samsung Securities</span></div>
+        <div class="agent-text">내 TOP 5 BUY LIST (2026-02-27) --- 1. 000720 현대건설 (Hyundai Engineering & Construction) THESIS: Nuclear + AI power infrastructure tailwind is structural, not cyclical. 28.4% in 5 days on 1.3x volume above upper BB confirms 기관 + 외국인 buying, not retail speculation. This is THE play on Korea's energy security bet. KEY SIGNAL: STRONG_UPTREND_5D + ABOVE_BB_UPPER on massive institutional conviction (1.3x volume). RSI 86.4 is overbought in a structural uptrend—this is strength, not weakness. Risk of pullback exists, but not breaking below 20-day MA yet. --- 2.…</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-meta">🇺🇸 Sarah Chen<span class="agent-firm">Goldman Sachs</span></div>
+        <div class="agent-text">SARAH CHEN'S TOP 5 BUY LIST – Feb 27, 2026 Let me be clear upfront: this market is dangerously overbought in pockets, and I'm being disciplined about entry points. I'm rejecting the obvious momentum plays (한미반도체, 현대건설, LG화학 are all &gt;10% above Bollinger upper band—reversion risk is real). Here's where I see asymmetric risk/reward: --- 1. 카카오 (035720) – ₩62,300 THESIS: Kakao is the cleanest Korean AI-software story—cloud infrastructure + search + AI. RSI at 64.8 is textbook bullish momentum without the overbought extreme, inside Bollinger bands, and MACD…</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-meta">🇰🇷 Park Sung-min (박성민)<span class="agent-firm">Mirae Asset</span></div>
+        <div class="agent-text">PARK SUNG-MIN'S TOP 5 BUY LIST — 27 FEB 2026 Let me cut to it: the retail crowd is rotating hard into hardware/power infrastructure, and the technicals are screaming. Here's where I'm putting conviction capital: --- 1. 051910 | LG화학 (LG Chem) THESIS: Massive +23.9% 5d rally with RSI 81 still climbing—this is a retail-driven squeeze in full effect. Above BB upper (115%) + MACD momentum up = institutional money chasing the retail bid. Hardware/battery play into AI server power demand is structural. KEY SIGNAL: Price closed above BB upper on 1.3x volume…</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-meta">🇺🇸 Michael Torres<span class="agent-firm">Citadel</span></div>
+        <div class="agent-text">TORRES' TOP 5 BUYS — Korean AI-Theme Shorts & Longs (2026-02-27) I'm going to be blunt: this dataset is a minefield of extended positions and momentum exhaustion. Three of my five are SHORT candidates, not buys. The data demands it. --- THE BUYS (Genuine Edge) 1. 000660 | SK하이닉스 THESIS: Classic mean-reversion setup in a structural mega-trend. DRAM pricing is bottoming into Q1'26; SK has run +21.1% in 10d but RSI 68.8 shows contained momentum (not 80+). MACD momentum DOWN while price holds is textbook accumulation before next leg. KEY SIGNAL: RSI…</div>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Value Investor Verdicts</div>
+      <div class="verdict-list">
+      <div class="verdict-item">
+        <div class="verdict-name">🇰🇷 Lee Byung-chul (이병철)<span class="agent-firm">KB Value Partners</span></div>
+        <div class="verdict-result"><span class="verdict-yes">✓ HD현대로보틱스 · 현대건설</span></div>
+      </div>
+      <div class="verdict-item">
+        <div class="verdict-name">🇺🇸 James Wright<span class="agent-firm">Vanguard Equity Research</span></div>
+        <div class="verdict-result"><span class="verdict-yes">✓ HD현대로보틱스 · 현대건설</span></div>
+      </div></div>
+    </div>
+
+    <div class="footer">Generated 2026-03-02 at 9:00 KST</div>
+  </div>
+  
+  <nav class="tabbar">
+    <a href="../index.html" class="tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+      Today
+    </a>
+    <a href="../archive.html" class="tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="2" y="3" width="20" height="5" rx="1"/>
+        <path d="M2 8h20v13a1 1 0 01-1 1H3a1 1 0 01-1-1V8z"/>
+        <path d="M10 12h4"/>
+      </svg>
+      Archive
+    </a>
+  </nav>
+</body>
+</html>
