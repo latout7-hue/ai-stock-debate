@@ -98,6 +98,29 @@
               letter-spacing:-.03em;line-height:1.08;margin-bottom:10px;}
   .hero-sub{font-size:14px;color:var(--secondary);line-height:1.5;}
 
+  /* macro outlook */
+  .macro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;}
+  .macro-card{background:var(--surface);border-radius:14px;padding:16px 18px;}
+  .macro-header{font-size:14px;font-weight:600;margin-bottom:6px;display:flex;
+                align-items:baseline;gap:5px;flex-wrap:wrap;}
+  .macro-firm{font-weight:400;color:var(--secondary);font-size:12px;}
+  .macro-text{font-size:13px;color:var(--secondary);line-height:1.6;}
+
+  /* bullet list */
+  .bullet-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;}
+  .bullet-list li{font-size:13px;color:var(--secondary);line-height:1.5;
+                  padding-left:18px;position:relative;}
+  .bullet-list li::before{content:"•";position:absolute;left:0;
+                           color:var(--accent);font-weight:700;font-size:15px;line-height:1.3;}
+
+  /* today's summary */
+  .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+  .summary-card{background:var(--surface);border-radius:14px;padding:16px 18px;}
+  .summary-card.risk{background:var(--red-bg);}
+  @media(prefers-color-scheme:dark){.summary-card.risk{background:rgba(155,28,28,.15);}}
+  .summary-card-label{font-size:11px;font-weight:700;letter-spacing:.08em;
+                       text-transform:uppercase;color:var(--secondary);margin-bottom:12px;}
+
   /* pick cards */
   .picks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;}
   .pick-card{background:var(--surface);border-radius:16px;padding:22px 20px 18px;}
@@ -108,21 +131,19 @@
   .pick-label{font-size:12px;font-weight:400;color:var(--secondary);}
   .pick-signals{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:16px;}
   .pick-why-label{font-size:11px;font-weight:700;letter-spacing:.06em;
-                  text-transform:uppercase;color:var(--secondary);margin-bottom:6px;}
-  .pick-why{font-size:13px;color:var(--secondary);line-height:1.55;}
+                  text-transform:uppercase;color:var(--secondary);margin-bottom:10px;}
 
   /* signal pill */
   .pill{font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;
         white-space:nowrap;display:inline-block;}
 
-  /* top 5 list */
+  /* top 10 list */
   .rank-list{display:flex;flex-direction:column;gap:1px;
              background:var(--border);border-radius:14px;overflow:hidden;}
   .rank-item{background:var(--bg);padding:14px 16px;
              display:flex;align-items:center;gap:12px;}
   .rank-item.selected{background:var(--green-bg);}
-  @media(prefers-color-scheme:dark){.rank-item.selected{background:var(--green-bg);}}
-  .rank-num{font-size:11px;font-weight:700;color:var(--secondary);width:22px;flex-shrink:0;}
+  .rank-num{font-size:11px;font-weight:700;color:var(--secondary);width:24px;flex-shrink:0;}
   .rank-info{flex:1;min-width:0;}
   .rank-name{font-size:15px;font-weight:600;margin-bottom:2px;
              white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -135,17 +156,17 @@
              font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;
              margin-left:5px;vertical-align:middle;letter-spacing:.04em;}
 
-  /* debate section */
-  .debate-toggle{
+  /* collapsible toggle (debate + fact-check) */
+  .panel-toggle{
     width:100%;background:var(--surface);border:none;border-radius:12px;
     padding:16px 18px;font-size:15px;font-weight:600;color:var(--accent);
     cursor:pointer;text-align:left;font-family:inherit;
     display:flex;justify-content:space-between;align-items:center;
     -webkit-tap-highlight-color:transparent;
   }
-  .debate-toggle:active{opacity:.7;}
-  .debate-body{display:none;margin-top:16px;}
-  .debate-body.open{display:block;}
+  .panel-toggle:active{opacity:.7;}
+  .panel-body{display:none;margin-top:16px;}
+  .panel-body.open{display:block;}
   .debate-round-label{font-size:11px;font-weight:700;letter-spacing:.1em;
                       text-transform:uppercase;color:var(--secondary);
                       margin:24px 0 12px;}
@@ -157,6 +178,14 @@
   .agent-firm{font-size:12px;color:var(--secondary);font-weight:400;margin-left:5px;}
   .agent-text{font-size:13px;color:var(--secondary);line-height:1.6;white-space:pre-wrap;}
 
+  /* fact-check card */
+  .fact-card{background:var(--blue-bg);border-radius:14px;padding:16px 18px;}
+  @media(prefers-color-scheme:dark){.fact-card{background:rgba(30,64,175,.12);}}
+  .fact-card-header{font-size:14px;font-weight:600;margin-bottom:8px;}
+  .fact-card-firm{font-weight:400;color:var(--secondary);font-size:12px;margin-left:4px;}
+  .fact-text{font-size:13px;color:var(--gray-text);line-height:1.65;white-space:pre-wrap;}
+  @media(prefers-color-scheme:dark){.fact-text{color:var(--secondary);}}
+
   /* verdicts */
   .verdict-list{display:flex;flex-direction:column;gap:1px;
                 background:var(--border);border-radius:14px;overflow:hidden;}
@@ -164,6 +193,21 @@
   .verdict-name{font-size:14px;font-weight:600;margin-bottom:5px;}
   .verdict-yes{color:var(--green);font-weight:600;font-size:14px;}
   .verdict-no{color:var(--secondary);font-size:14px;}
+
+  /* devil's advocate */
+  .da-card{background:var(--amber-bg);border:1px solid var(--amber);
+           border-radius:14px;padding:18px;}
+  @media(prefers-color-scheme:dark){
+    .da-card{background:rgba(120,53,15,.15);border-color:var(--amber);}
+  }
+  .da-header{display:flex;justify-content:space-between;align-items:flex-start;
+             margin-bottom:14px;gap:10px;flex-wrap:wrap;}
+  .da-meta{font-size:14px;font-weight:600;}
+  .da-firm{font-weight:400;color:var(--secondary);font-size:12px;margin-left:4px;}
+  .da-text{font-size:13px;line-height:1.65;color:var(--gray-text);white-space:pre-wrap;}
+  @media(prefers-color-scheme:dark){.da-text{color:var(--secondary);}}
+  .verdict-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;
+                 white-space:nowrap;display:inline-block;}
 
   /* archive */
   .archive-list{display:flex;flex-direction:column;gap:1px;
@@ -195,7 +239,9 @@
   
   <div class="page">
     <div class="section" style="padding-top:24px;">
-      <div class="section-label"><span class="en">Past Debates</span><span class="ko">지난 토론</span></div>
+      <div class="section-label">
+        <span class="en">Past Debates</span><span class="ko">지난 토론</span>
+      </div>
       <div class="archive-list">
       <a href="debates/2026-03-02.html" class="archive-item">
         <div>
@@ -205,7 +251,10 @@
         <div class="archive-chev">›</div>
       </a></div>
     </div>
-    <div class="footer"><span class="en">Updated daily at 9:00 KST</span><span class="ko">매일 오전 9시 KST 업데이트</span></div>
+    <div class="footer">
+      <span class="en">Updated daily at 9:00 KST</span>
+      <span class="ko">매일 오전 9시 KST 업데이트</span>
+    </div>
   </div>
   
   <nav class="tabbar">
@@ -245,12 +294,16 @@
     });
   })();
 
-  // Debate toggle
-  function toggleDebate(btn) {
+  // Generic collapsible panel toggle
+  function togglePanel(btn) {
     const body = btn.nextElementSibling;
     const open = body.classList.toggle('open');
-    btn.querySelector('.en').textContent = open ? 'Hide debate ↑'       : 'Read full debate ↓';
-    btn.querySelector('.ko').textContent = open ? '토론 숨기기 ↑'        : '전체 토론 보기 ↓';
+    const showEn = btn.dataset.showEn || 'Show ↓';
+    const hideEn = btn.dataset.hideEn || 'Hide ↑';
+    const showKo = btn.dataset.showKo || '보기 ↓';
+    const hideKo = btn.dataset.hideKo || '숨기기 ↑';
+    btn.querySelector('.en').textContent = open ? hideEn : showEn;
+    btn.querySelector('.ko').textContent = open ? hideKo : showKo;
   }
 </script>
 </body>
